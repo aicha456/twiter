@@ -49,7 +49,7 @@ from transformers import pipeline
 import nltk
 
 import tensorflow
-
+ste = ISRIStemmer()
 
 #from farasa.stemmer import FarasaStemmer
 
