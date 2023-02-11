@@ -14,7 +14,7 @@ pywhatkit==5.4
 requests==2.28.1
 scikit_learn==1.2.1
 seaborn==0.12.2
-snscrape==0.4.3.20220107.dev73+gcbdaee6
+
 streamlit==1.14.0
 streamlit_folium==0.7.0
 streamlit_lottie==0.0.3
