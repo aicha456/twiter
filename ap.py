@@ -21,10 +21,16 @@ from bidi.algorithm import get_display
 from nltk.corpus import stopwords
 from nltk.stem.isri import ISRIStemmer
 # Import Watson
+from collections import Counter
+import folium
+import  geopy
+from geopy.exc import GeocoderTimedOut
+from geopy.geocoders import Nominatim
 
 import requests
 import re
 import string
+import pytorch_pretrained_bert as ppb
 
 from sklearn.model_selection import cross_val_score
 from sklearn.preprocessing import LabelEncoder
@@ -39,6 +45,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import LabelBinarizer
 from sklearn.preprocessing import MultiLabelBinarizer
+from transformers import pipeline
+import nltk
 
 import tensorflow
 
@@ -570,10 +578,7 @@ for w in stopwords_list:
  rootWord=str.stem(w)
  stop.append(rootWord)
 
-from nltk.stem.arlstem import ARLSTem
-from nltk.stem.isri import ISRIStemmer
-ste = ISRIStemmer()
-ar=ARLSTem()
+
 
 tweets_df['CleanTweet'] = tweets_df['Tweet'].apply(normalize_tweet)
 tweets_df['CleanTweet'].apply(lambda words: ' '.join(word for word in nltk.tokenize.wordpunct_tokenize(words) if ste.stem(word) not in stop))
@@ -586,7 +591,6 @@ tweets_df['CleanTweet']
    
 
 
-from transformers import pipeline
 model = pipeline('text-classification', model='Ammar-alhaj-ali/arabic-MARBERT-sentiment')
 tweet=tweets_df['CleanTweet'].tolist()
 
@@ -597,22 +601,17 @@ for i in range(len(se)):
   setm.append(se[i].get('label'))
 setm
 setm
-import matplotlib.pyplot as pyplot
-import plotly.express as px
-from collections import Counter
-print(Counter(setm))
+
+#print(Counter(setm))
 counts=Counter(setm)
 fif=px.pie(values=[float(v) for v in counts.values()], names=[k for k in counts])
 st.plotly_chart(fif)
 
-from transformers import pipeline
-import pytorch_pretrained_bert as ppb
 assert 'bert-large-cased' in ppb.modeling.PRETRAINED_MODEL_ARCHIVE_MAP
 
 #  import pipeline
 tweet=tweets_df['CleanTweet'].tolist()
 print(tweet)
-from transformers import pipeline
 model = pipeline('text-classification', model='Ammar-alhaj-ali/arabic-MARBERT-dialect-identification-city')
 sentences = tweet
 e=model(sentences)
@@ -622,7 +621,6 @@ r=[]
 for i in range(len(e)):
   r.append(e[i]['label'])
 print(r)
-from collections import Counter
 print(Counter(r))
 counts=Counter(r)
 fi=px.pie(values=[float(v) for v in counts.values()], names=[k for k in counts])
@@ -639,10 +637,6 @@ st.plotly_chart(fi)
 
 
 #st.plotly_chart(sizes, labels=labels)
-import folium
-import  geopy
-from geopy.exc import GeocoderTimedOut
-from geopy.geocoders import Nominatim
 
 
 #geo_locator = Nominatim(user_agent="LearnPython")
