@@ -34,7 +34,7 @@ from transformers import pipeline
 from nltk.stem.isri import ISRIStemmer
 from nltk.stem.isri import ISRIStemmer
 assert 'bert-large-cased' in ppb.modeling.PRETRAINED_MODEL_ARCHIVE_MAP
-
+@st.cache
 #from farasa.stemmer import FarasaStemmer
 
 
