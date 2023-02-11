@@ -34,10 +34,6 @@ from transformers import pipeline
 from nltk.stem.isri import ISRIStemmer
 from nltk.stem.isri import ISRIStemmer
 assert 'bert-large-cased' in ppb.modeling.PRETRAINED_MODEL_ARCHIVE_MAP
-#@st.cache
-#from farasa.stemmer import FarasaStemmer
-@st.cache(ttl=24*3600)
-
 COMMA = u'\u060C'
 SEMICOLON = u'\u061B'
 QUESTION = u'\u061F'
