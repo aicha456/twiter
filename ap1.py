@@ -33,6 +33,7 @@ from transformers import pipeline
 
 from nltk.stem.isri import ISRIStemmer
 from nltk.stem.isri import ISRIStemmer
+assert 'bert-large-cased' in ppb.modeling.PRETRAINED_MODEL_ARCHIVE_MAP
 
 #from farasa.stemmer import FarasaStemmer
 
@@ -590,11 +591,9 @@ counts=Counter(setm)
 fif=px.pie(values=[float(v) for v in counts.values()], names=[k for k in counts])
 st.plotly_chart(fif)
 
-assert 'bert-large-cased' in ppb.modeling.PRETRAINED_MODEL_ARCHIVE_MAP
 
 #  import pipeline
-tweet=tweets_df['CleanTweet'].tolist()
-print(tweet)
+
 model = pipeline('text-classification', model='Ammar-alhaj-ali/arabic-MARBERT-dialect-identification-city')
 sentences = tweet
 e=model(sentences)
