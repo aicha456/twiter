@@ -21,30 +21,25 @@ from bidi.algorithm import get_display
 from nltk.corpus import stopwords
 from nltk.stem.isri import ISRIStemmer
 # Import Watson
-from keras import models
+
 import requests
 import re
 import string
-from keras.engine.functional import Functional
-from keras.models import Sequential
-from keras.layers import Dense
-from keras.wrappers.scikit_learn import KerasClassifier
+
 from sklearn.model_selection import cross_val_score
 from sklearn.preprocessing import LabelEncoder
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.model_selection import StratifiedKFold
 from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import Pipeline
-from keras.callbacks import TensorBoard
-from keras.preprocessing.text import Tokenizer
+
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split
-from keras.models import Sequential
-from keras.layers import Dense , Activation , Dropout
+
 from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import LabelBinarizer
 from sklearn.preprocessing import MultiLabelBinarizer
-import keras.preprocessing.text
+
 import tensorflow
 
 
