@@ -18,7 +18,6 @@ import plotly.graph_objects as go
 import numpy as np
 from arabic_reshaper import ArabicReshaper
 from bidi.algorithm import get_display
-import ibm_watson
 from nltk.corpus import stopwords
 from nltk.stem.isri import ISRIStemmer
 # Import Watson
