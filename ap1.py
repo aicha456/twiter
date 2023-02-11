@@ -18,7 +18,6 @@ import plotly.graph_objects as go
 import numpy as np
 from arabic_reshaper import ArabicReshaper
 from bidi.algorithm import get_display
-import ibm_watson
 from nltk.corpus import stopwords
 from nltk.stem.isri import ISRIStemmer
 # Import Watson
@@ -26,28 +25,14 @@ from keras import models
 import requests
 import re
 import string
-from keras.engine.functional import Functional
-from keras.models import Sequential
-from keras.layers import Dense
-from keras.wrappers.scikit_learn import KerasClassifier
-from sklearn.model_selection import cross_val_score
-from sklearn.preprocessing import LabelEncoder
-from sklearn.preprocessing import OneHotEncoder
-from sklearn.model_selection import StratifiedKFold
-from sklearn.preprocessing import StandardScaler
-from sklearn.pipeline import Pipeline
-from keras.callbacks import TensorBoard
-from keras.preprocessing.text import Tokenizer
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.model_selection import train_test_split
-from keras.models import Sequential
-from keras.layers import Dense , Activation , Dropout
-from sklearn.linear_model import LogisticRegression
-from sklearn.preprocessing import LabelBinarizer
-from sklearn.preprocessing import MultiLabelBinarizer
-import keras.preprocessing.text
-import tensorflow
+import pytorch_pretrained_bert as ppb
 
+import tensorflow
+import nltk
+from transformers import pipeline
+
+from nltk.stem.isri import ISRIStemmer
+from nltk.stem.isri import ISRIStemmer
 
 #from farasa.stemmer import FarasaStemmer
 
@@ -567,7 +552,6 @@ with tab2:
 number = st.number_input('Insert how many top users ')
 datta=tweets_df.sort_values(by=['Followers'],ascending=False)
 st.write(datta[['tweetID','Tweet','Username','Followers','source']].head(int(number)))
-import nltk
 nltk.download('stopwords')
 stopwords_list = stopwords.words('arabic')
 str = ISRIStemmer()
@@ -576,8 +560,7 @@ for w in stopwords_list:
  rootWord=str.stem(w)
  stop.append(rootWord)
 
-from nltk.stem.arlstem import ARLSTem
-from nltk.stem.isri import ISRIStemmer
+
 ste = ISRIStemmer()
 ar=ARLSTem()
 
@@ -592,7 +575,6 @@ tweets_df['CleanTweet']
    
 
 
-from transformers import pipeline
 model = pipeline('text-classification', model='Ammar-alhaj-ali/arabic-MARBERT-sentiment')
 tweet=tweets_df['CleanTweet'].tolist()
 
@@ -602,33 +584,25 @@ setm=[]
 for i in range(len(se)):
   setm.append(se[i].get('label'))
 setm
-setm
-import matplotlib.pyplot as pyplot
-import plotly.express as px
-from collections import Counter
+
 print(Counter(setm))
 counts=Counter(setm)
 fif=px.pie(values=[float(v) for v in counts.values()], names=[k for k in counts])
 st.plotly_chart(fif)
 
-from transformers import pipeline
-import pytorch_pretrained_bert as ppb
 assert 'bert-large-cased' in ppb.modeling.PRETRAINED_MODEL_ARCHIVE_MAP
 
 #  import pipeline
 tweet=tweets_df['CleanTweet'].tolist()
 print(tweet)
-from transformers import pipeline
 model = pipeline('text-classification', model='Ammar-alhaj-ali/arabic-MARBERT-dialect-identification-city')
 sentences = tweet
 e=model(sentences)
-import matplotlib.pyplot as pyplot
-import plotly.express as px
+
 r=[]
 for i in range(len(e)):
   r.append(e[i]['label'])
 print(r)
-from collections import Counter
 print(Counter(r))
 counts=Counter(r)
 fi=px.pie(values=[float(v) for v in counts.values()], names=[k for k in counts])
