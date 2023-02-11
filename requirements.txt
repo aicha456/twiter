@@ -1,7 +1,7 @@
 arabic_reshaper==3.0.0
 folium==0.13.0
 geopy==2.3.0
-ibm_watson==6.1.0
+
 keras==2.11.0
 matplotlib==3.6.2
 nltk==3.8.1
