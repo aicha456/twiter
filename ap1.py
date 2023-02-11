@@ -562,7 +562,7 @@ for w in stopwords_list:
 
 
 ste = ISRIStemmer()
-ar=ARLSTem()
+
 
 tweets_df['CleanTweet'] = tweets_df['Tweet'].apply(normalize_tweet)
 tweets_df['CleanTweet'].apply(lambda words: ' '.join(word for word in nltk.tokenize.wordpunct_tokenize(words) if ste.stem(word) not in stop))
